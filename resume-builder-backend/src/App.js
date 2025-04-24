@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-// import userRouter from './routes/user.route.js';
+import router from "./routes/user_route.js";
 // import session from "express-session";
 // import path from "path";
 
@@ -45,7 +45,14 @@ app.use(express.urlencoded({
 
 app.use(cookieParser())             
 
-
+app.use(cors({
+    origin: ['*', 'http://localhost:3000'], // Allow these origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+    credentials: true, // Allow credentials
+}));
+  // Routes
+  app.use("/api/v1/users", router);
 
   
   
